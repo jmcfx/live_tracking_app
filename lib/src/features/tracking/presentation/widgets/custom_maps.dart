@@ -22,6 +22,7 @@ class _CustomMapsState extends ConsumerState<CustomMaps>
     with SingleTickerProviderStateMixin {
   late final MapController _mapController;
   late final AnimationController _blinkController;
+  LatLng? _previousRiderPoint;
 
   @override
   void initState() {
@@ -85,25 +86,54 @@ class _CustomMapsState extends ConsumerState<CustomMaps>
     final double rotationAngle =
         (riderLocation?.heading ?? 0) * (math.pi / 180.r);
 
-    return FlutterMap(
-      mapController: _mapController,
-      options: MapOptions(
-        initialCenter: AppMapConfig.initialCenter,
-        initialZoom: 9.0,
+    final beginPoint = _previousRiderPoint ?? AppMapConfig.routePoints.last;
+    _previousRiderPoint = currentRiderPoint;
+
+    return TweenAnimationBuilder<LatLng>(
+      tween: _LatLngTween(
+        begin: beginPoint,
+        end: currentRiderPoint,
       ),
-      children: [
-        TileLayer(
-          urlTemplate: AppMapConfig.mapTileUrl,
-          userAgentPackageName: AppMapConfig.userAgentPackageName,
-        ),
-        DestinationMarkerLayer(destinationPoint: destinationPoint),
-        const RoutePolylineLayer(),
-        RiderMarkerLayer(
-          currentRiderPoint: currentRiderPoint,
-          rotationAngle: rotationAngle,
-          blinkController: _blinkController,
-        ),
-      ],
+      duration: const Duration(milliseconds: 1000),
+      builder: (context, animatedPoint, _) {
+        return TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0.0, end: rotationAngle),
+          duration: const Duration(milliseconds: 1000),
+          builder: (context, animatedRotation, _) {
+            return FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                initialCenter: AppMapConfig.initialCenter,
+                initialZoom: 9.0,
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate: AppMapConfig.mapTileUrl,
+                  userAgentPackageName: AppMapConfig.userAgentPackageName,
+                ),
+                DestinationMarkerLayer(destinationPoint: destinationPoint),
+                RoutePolylineLayer(currentRiderPoint: animatedPoint),
+                RiderMarkerLayer(
+                  animatedPoint: animatedPoint,
+                  animatedRotation: animatedRotation,
+                  blinkController: _blinkController,
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
+  }
+}
+
+class _LatLngTween extends Tween<LatLng> {
+  _LatLngTween({super.begin, super.end});
+
+  @override
+  LatLng lerp(double t) {
+    final lat = begin!.latitude + (end!.latitude - begin!.latitude) * t;
+    final lng = begin!.longitude + (end!.longitude - begin!.longitude) * t;
+    return LatLng(lat, lng);
   }
 }
