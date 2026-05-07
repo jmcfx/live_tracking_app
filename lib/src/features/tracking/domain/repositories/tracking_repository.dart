@@ -3,6 +3,6 @@ import 'package:live_tracking_app/src/features/tracking/domain/entities/delivery
 
 /// Abstract contract for the tracking data layer.
 abstract interface class TrackingRepository {
-  Stream<FailureOr<DeliveryInfoEnity>> watchRiderLocation(String deliveryId);
-  Future<FailureOr<DeliveryInfoEnity>> getDeliveryInfo(String deliveryId);
+  Stream<FailureOr<DeliveryInfoEntity>> watchRiderLocation(String deliveryId);
+  Future<FailureOr<DeliveryInfoEntity>> getDeliveryInfo(String deliveryId);
 }

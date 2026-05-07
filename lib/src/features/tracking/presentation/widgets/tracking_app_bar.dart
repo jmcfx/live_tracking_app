@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:live_tracking_app/src/core/constants/app_icons.dart';
 
 class TrackingAppBar extends StatelessWidget {
   const TrackingAppBar({super.key});
@@ -8,38 +10,44 @@ class TrackingAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        child: Row(
-          spacing: 77.w,
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.of(context).maybePop(),
-              child: Container(
-                width: 40.w,
-                height: 40.w,
-                decoration: BoxDecoration(
-                  color: theme.scaffoldBackgroundColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 0),
+      child: Row(
+        spacing: 77.w,
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.of(context).maybePop(),
+            child: Container(
+              clipBehavior: Clip.hardEdge,
+              padding: EdgeInsets.symmetric(
+                horizontal: 15.39.w,
+                vertical: 11.25.h,
+              ).r,
+              alignment: AlignmentGeometry.center,
+
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.textTheme.bodyMedium!.color!.withValues(
+                      alpha: 0.1,
                     ),
-                  ],
-                ),
-                child: Icon(
-                  Icons.chevron_left,
-                  size: 24.sp,
-                  color: Colors.black87,
-                ),
+                    blurRadius: 8,
+                    spreadRadius: 4,
+
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+                color: theme.scaffoldBackgroundColor,
+                shape: BoxShape.circle,
+              ),
+              child: SvgPicture.asset(
+                AppIcons.arrow,
+                width: 9.w,
+                height: 17.5.h,
               ),
             ),
+          ),
 
-            Text('Live Tracking', style: theme.textTheme.bodyLarge),
-          ],
-        ),
+          Text('Live Tracking', style: theme.textTheme.bodyLarge),
+        ],
       ),
     );
   }

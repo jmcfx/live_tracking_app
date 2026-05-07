@@ -18,6 +18,7 @@ class AppTheme {
       onPrimary: AppColors.primary50,
       onPrimaryFixedVariant: AppColors.primary200,
       onSecondary: AppColors.accent100,
+      inversePrimary: AppColors.neutral500,
     ),
   );
 

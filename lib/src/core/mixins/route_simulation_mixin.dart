@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:latlong2/latlong.dart';
 import 'package:live_tracking_app/src/core/config/app_map_config.dart';
+import 'package:live_tracking_app/src/core/enums/delivery_status.dart';
 import 'package:live_tracking_app/src/core/errors/exceptions.dart';
 import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 mixin RouteSimulationMixin {
   static const int _steps = 7;
-  static const Duration _stepDelay = Duration(milliseconds: 500);
+  static const Duration _stepDelay = Duration(milliseconds: 1000);
 
   Future<void> runSimulation({
     required List<LatLng> routePoints,
@@ -37,6 +38,7 @@ mixin RouteSimulationMixin {
         final remainingFraction = 1 - (currentStep / totalSteps);
         final etaMinutes = (10 * remainingFraction).ceil();
 
+        final isDelivered = currentStep == totalSteps;
         final response = TrackingInfoResponse(
           riderLocation: RiderLocation(
             lat: lat,
@@ -46,7 +48,7 @@ mixin RouteSimulationMixin {
           ),
           deliveryInfo: DeliveryInfo(
             id: deliveryId,
-            courierName: 'Opeyemi',
+            courierName: 'Presley Williams',
             courierPhone: '+2348102373232',
             courierAvatar: '',
             riderLocation: RiderLocation(
@@ -56,8 +58,8 @@ mixin RouteSimulationMixin {
               timestamp: DateTime.now(),
             ),
             destination: AppMapConfig.routePoints.first,
-            status: 'On the way',
-            etaMinutes: etaMinutes,
+            status: isDelivered ? DeliveryStatus.delivered : DeliveryStatus.onTheWay,
+            etaMinutes: isDelivered ? 0 : etaMinutes,
           ),
         );
 

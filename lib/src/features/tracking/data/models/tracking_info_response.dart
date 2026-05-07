@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:live_tracking_app/src/core/enums/delivery_status.dart';
 import 'package:live_tracking_app/src/features/tracking/domain/entities/delivery_info_entity.dart';
 import 'package:live_tracking_app/src/features/tracking/domain/entities/rider_location_entity.dart';
 
@@ -51,7 +52,7 @@ abstract class DeliveryInfo with _$DeliveryInfo {
     required String courierAvatar,
     required RiderLocation riderLocation,
     required LatLng destination,
-    required String status,
+    required DeliveryStatus status,
     required int etaMinutes,
   }) = _DeliveryInfo;
 
@@ -61,12 +62,12 @@ abstract class DeliveryInfo with _$DeliveryInfo {
 
 ///  Extension to map the Model to the Domain Entity
 extension DeliveryInfoX on DeliveryInfo {
-  DeliveryInfoEnity toEntity() => DeliveryInfoEnity(
+  DeliveryInfoEntity toEntity() => DeliveryInfoEntity(
     id: id,
     courierName: courierName,
     courierPhone: courierPhone,
     courierAvatar: courierAvatar,
-    riderLocation: riderLocation,
+    riderLocation: riderLocation.toEntity(),
     destination: destination,
     status: status,
     etaMinutes: etaMinutes,

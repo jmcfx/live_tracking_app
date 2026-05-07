@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:live_tracking_app/src/core/constants/app_icons.dart';
+import 'package:live_tracking_app/src/features/shared/widgets/animated_floating_widget.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +14,9 @@ class CourierDeliveryTimeline extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final deliveryInfo = ref.watch(trackingProvider.select((s) => s.deliveryInfo));
+    final deliveryInfo = ref.watch(
+      trackingProvider.select((s) => s.deliveryInfo),
+    );
 
     return Timeline.tileBuilder(
       shrinkWrap: true,
@@ -24,7 +27,9 @@ class CourierDeliveryTimeline extends ConsumerWidget {
         itemCount: 2,
         connectorBuilder: (_, index, _) {
           return DashedLineConnector(
-            color: theme.colorScheme.primary,
+            color: deliveryInfo!.status.isDelivered
+                ? theme.colorScheme.onPrimary.withValues(alpha: 0.5)
+                : theme.colorScheme.primary,
             thickness: 1,
             gap: 2,
             dash: 2,
@@ -53,12 +58,22 @@ class CourierDeliveryTimeline extends ConsumerWidget {
               ),
             );
           }
-          return SvgPicture.asset(
-            AppIcons.mapPin,
-             height: 22.h,
-             width: 22.w,
-            fit: BoxFit.cover,
-            alignment: AlignmentGeometry.center,
+          return AnimatedFloatingWidget(
+            duration: const Duration(seconds: 1),
+            floatOffset: -4.h,
+            child: SvgPicture.asset(
+              AppIcons.mapPin,
+              height: 22.h,
+              width: 22.w,
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+              colorFilter: ColorFilter.mode(
+                deliveryInfo!.status.isDelivered
+                    ? theme.colorScheme.onPrimaryFixed
+                    : theme.colorScheme.inversePrimary,
+                BlendMode.srcIn,
+              ),
+            ),
           );
         },
 
@@ -74,7 +89,10 @@ class CourierDeliveryTimeline extends ConsumerWidget {
                     mainAxisAlignment: .center,
                     crossAxisAlignment: .start,
                     children: [
-                      Text(deliveryInfo?.status ?? "On Delivery", style: theme.textTheme.bodySmall),
+                      Text(
+                        deliveryInfo?.status.label ?? "On Delivery",
+                        style: theme.textTheme.bodySmall,
+                      ),
                       Text(
                         "Courier is delivering the package",
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -82,7 +100,7 @@ class CourierDeliveryTimeline extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        "${deliveryInfo?.etaMinutes ?? '--'} minutes destination",
+                        "${deliveryInfo?.etaMinutes ?? ''} minutes destination",
                         style: theme.textTheme.bodySmall,
                       ),
                     ],

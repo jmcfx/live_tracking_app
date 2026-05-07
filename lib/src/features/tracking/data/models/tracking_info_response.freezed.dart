@@ -596,7 +596,7 @@ as DateTime,
 /// @nodoc
 mixin _$DeliveryInfo {
 
- String get id; String get courierName; String get courierPhone; String get courierAvatar; RiderLocation get riderLocation; LatLng get destination; String get status; int get etaMinutes;
+ String get id; String get courierName; String get courierPhone; String get courierAvatar; RiderLocation get riderLocation; LatLng get destination; DeliveryStatus get status; int get etaMinutes;
 /// Create a copy of DeliveryInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -629,7 +629,7 @@ abstract mixin class $DeliveryInfoCopyWith<$Res>  {
   factory $DeliveryInfoCopyWith(DeliveryInfo value, $Res Function(DeliveryInfo) _then) = _$DeliveryInfoCopyWithImpl;
 @useResult
 $Res call({
- String id, String courierName, String courierPhone, String courierAvatar, RiderLocation riderLocation, LatLng destination, String status, int etaMinutes
+ String id, String courierName, String courierPhone, String courierAvatar, RiderLocation riderLocation, LatLng destination, DeliveryStatus status, int etaMinutes
 });
 
 
@@ -655,7 +655,7 @@ as String,courierAvatar: null == courierAvatar ? _self.courierAvatar : courierAv
 as String,riderLocation: null == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
 as RiderLocation,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as LatLng,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String,etaMinutes: null == etaMinutes ? _self.etaMinutes : etaMinutes // ignore: cast_nullable_to_non_nullable
+as DeliveryStatus,etaMinutes: null == etaMinutes ? _self.etaMinutes : etaMinutes // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -750,7 +750,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  String status,  int etaMinutes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  DeliveryStatus status,  int etaMinutes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeliveryInfo() when $default != null:
 return $default(_that.id,_that.courierName,_that.courierPhone,_that.courierAvatar,_that.riderLocation,_that.destination,_that.status,_that.etaMinutes);case _:
@@ -771,7 +771,7 @@ return $default(_that.id,_that.courierName,_that.courierPhone,_that.courierAvata
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  String status,  int etaMinutes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  DeliveryStatus status,  int etaMinutes)  $default,) {final _that = this;
 switch (_that) {
 case _DeliveryInfo():
 return $default(_that.id,_that.courierName,_that.courierPhone,_that.courierAvatar,_that.riderLocation,_that.destination,_that.status,_that.etaMinutes);case _:
@@ -791,7 +791,7 @@ return $default(_that.id,_that.courierName,_that.courierPhone,_that.courierAvata
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  String status,  int etaMinutes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String courierName,  String courierPhone,  String courierAvatar,  RiderLocation riderLocation,  LatLng destination,  DeliveryStatus status,  int etaMinutes)?  $default,) {final _that = this;
 switch (_that) {
 case _DeliveryInfo() when $default != null:
 return $default(_that.id,_that.courierName,_that.courierPhone,_that.courierAvatar,_that.riderLocation,_that.destination,_that.status,_that.etaMinutes);case _:
@@ -815,7 +815,7 @@ class _DeliveryInfo implements DeliveryInfo {
 @override final  String courierAvatar;
 @override final  RiderLocation riderLocation;
 @override final  LatLng destination;
-@override final  String status;
+@override final  DeliveryStatus status;
 @override final  int etaMinutes;
 
 /// Create a copy of DeliveryInfo
@@ -851,7 +851,7 @@ abstract mixin class _$DeliveryInfoCopyWith<$Res> implements $DeliveryInfoCopyWi
   factory _$DeliveryInfoCopyWith(_DeliveryInfo value, $Res Function(_DeliveryInfo) _then) = __$DeliveryInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String courierName, String courierPhone, String courierAvatar, RiderLocation riderLocation, LatLng destination, String status, int etaMinutes
+ String id, String courierName, String courierPhone, String courierAvatar, RiderLocation riderLocation, LatLng destination, DeliveryStatus status, int etaMinutes
 });
 
 
@@ -877,7 +877,7 @@ as String,courierAvatar: null == courierAvatar ? _self.courierAvatar : courierAv
 as String,riderLocation: null == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
 as RiderLocation,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as LatLng,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String,etaMinutes: null == etaMinutes ? _self.etaMinutes : etaMinutes // ignore: cast_nullable_to_non_nullable
+as DeliveryStatus,etaMinutes: null == etaMinutes ? _self.etaMinutes : etaMinutes // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

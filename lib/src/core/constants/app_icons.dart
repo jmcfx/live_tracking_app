@@ -7,4 +7,5 @@ class AppIcons {
   static const String phone = "$basePath/phone.svg";
   static const String rider = "$basePath/rider.svg";
   static const String marker = "$basePath/marker.svg";
+  static const String arrow = "$basePath/arrow.svg";
 }

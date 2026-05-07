@@ -48,7 +48,7 @@ _DeliveryInfo _$DeliveryInfoFromJson(Map<String, dynamic> json) =>
         json['riderLocation'] as Map<String, dynamic>,
       ),
       destination: LatLng.fromJson(json['destination'] as Map<String, dynamic>),
-      status: json['status'] as String,
+      status: $enumDecode(_$DeliveryStatusEnumMap, json['status']),
       etaMinutes: (json['etaMinutes'] as num).toInt(),
     );
 
@@ -60,6 +60,11 @@ Map<String, dynamic> _$DeliveryInfoToJson(_DeliveryInfo instance) =>
       'courierAvatar': instance.courierAvatar,
       'riderLocation': instance.riderLocation,
       'destination': instance.destination,
-      'status': instance.status,
+      'status': _$DeliveryStatusEnumMap[instance.status]!,
       'etaMinutes': instance.etaMinutes,
     };
+
+const _$DeliveryStatusEnumMap = {
+  DeliveryStatus.onTheWay: 'On the way',
+  DeliveryStatus.delivered: 'Delivered',
+};

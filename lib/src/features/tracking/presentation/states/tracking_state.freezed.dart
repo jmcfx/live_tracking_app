@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TrackingState {
 
- ViewState get viewState; DeliveryInfoEnity? get deliveryInfo; RiderLocationEntity? get riderLocation; String? get errorMessage;
+ ViewState get viewState; DeliveryInfoEntity? get deliveryInfo; RiderLocationEntity? get riderLocation; String? get errorMessage;
 /// Create a copy of TrackingState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $TrackingStateCopyWith<$Res>  {
   factory $TrackingStateCopyWith(TrackingState value, $Res Function(TrackingState) _then) = _$TrackingStateCopyWithImpl;
 @useResult
 $Res call({
- ViewState viewState, DeliveryInfoEnity? deliveryInfo, RiderLocationEntity? riderLocation, String? errorMessage
+ ViewState viewState, DeliveryInfoEntity? deliveryInfo, RiderLocationEntity? riderLocation, String? errorMessage
 });
 
 
@@ -66,7 +66,7 @@ class _$TrackingStateCopyWithImpl<$Res>
   return _then(_self.copyWith(
 viewState: null == viewState ? _self.viewState : viewState // ignore: cast_nullable_to_non_nullable
 as ViewState,deliveryInfo: freezed == deliveryInfo ? _self.deliveryInfo : deliveryInfo // ignore: cast_nullable_to_non_nullable
-as DeliveryInfoEnity?,riderLocation: freezed == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
+as DeliveryInfoEntity?,riderLocation: freezed == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
 as RiderLocationEntity?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ViewState viewState,  DeliveryInfoEnity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ViewState viewState,  DeliveryInfoEntity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TrackingState() when $default != null:
 return $default(_that.viewState,_that.deliveryInfo,_that.riderLocation,_that.errorMessage);case _:
@@ -174,7 +174,7 @@ return $default(_that.viewState,_that.deliveryInfo,_that.riderLocation,_that.err
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ViewState viewState,  DeliveryInfoEnity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ViewState viewState,  DeliveryInfoEntity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _TrackingState():
 return $default(_that.viewState,_that.deliveryInfo,_that.riderLocation,_that.errorMessage);case _:
@@ -194,7 +194,7 @@ return $default(_that.viewState,_that.deliveryInfo,_that.riderLocation,_that.err
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ViewState viewState,  DeliveryInfoEnity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ViewState viewState,  DeliveryInfoEntity? deliveryInfo,  RiderLocationEntity? riderLocation,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _TrackingState() when $default != null:
 return $default(_that.viewState,_that.deliveryInfo,_that.riderLocation,_that.errorMessage);case _:
@@ -213,7 +213,7 @@ class _TrackingState implements TrackingState {
   
 
 @override@JsonKey() final  ViewState viewState;
-@override final  DeliveryInfoEnity? deliveryInfo;
+@override final  DeliveryInfoEntity? deliveryInfo;
 @override final  RiderLocationEntity? riderLocation;
 @override final  String? errorMessage;
 
@@ -247,7 +247,7 @@ abstract mixin class _$TrackingStateCopyWith<$Res> implements $TrackingStateCopy
   factory _$TrackingStateCopyWith(_TrackingState value, $Res Function(_TrackingState) _then) = __$TrackingStateCopyWithImpl;
 @override @useResult
 $Res call({
- ViewState viewState, DeliveryInfoEnity? deliveryInfo, RiderLocationEntity? riderLocation, String? errorMessage
+ ViewState viewState, DeliveryInfoEntity? deliveryInfo, RiderLocationEntity? riderLocation, String? errorMessage
 });
 
 
@@ -268,7 +268,7 @@ class __$TrackingStateCopyWithImpl<$Res>
   return _then(_TrackingState(
 viewState: null == viewState ? _self.viewState : viewState // ignore: cast_nullable_to_non_nullable
 as ViewState,deliveryInfo: freezed == deliveryInfo ? _self.deliveryInfo : deliveryInfo // ignore: cast_nullable_to_non_nullable
-as DeliveryInfoEnity?,riderLocation: freezed == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
+as DeliveryInfoEntity?,riderLocation: freezed == riderLocation ? _self.riderLocation : riderLocation // ignore: cast_nullable_to_non_nullable
 as RiderLocationEntity?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

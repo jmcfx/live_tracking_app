@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:live_tracking_app/src/core/config/app_map_config.dart';
+import 'package:live_tracking_app/src/core/enums/delivery_status.dart';
 import 'package:live_tracking_app/src/core/mixins/route_simulation_mixin.dart';
 import 'package:live_tracking_app/src/features/tracking/data/client/tracking_socket_client.dart';
 import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
@@ -46,7 +47,7 @@ class TrackingRemoteDataSourceImpl
       ),
       deliveryInfo: DeliveryInfo(
         id: deliveryId,
-        courierName: 'Opeyemi',
+        courierName: 'Presley Williams',
         courierPhone: '+2348102373232',
         courierAvatar: 'https://i.pravatar.cc/150?u=$deliveryId',
         riderLocation: RiderLocation(
@@ -56,7 +57,7 @@ class TrackingRemoteDataSourceImpl
           timestamp: DateTime.now(),
         ),
         destination: AppMapConfig.routePoints.first,
-        status: 'On the way',
+        status: DeliveryStatus.onTheWay,
         etaMinutes: 10,
       ),
     );

@@ -10,7 +10,7 @@ abstract class TrackingState with _$TrackingState {
   const factory TrackingState({
    
     @Default(ViewState.idle) ViewState viewState,
-    DeliveryInfoEnity? deliveryInfo,
+    DeliveryInfoEntity? deliveryInfo,
     RiderLocationEntity? riderLocation,
     String? errorMessage,
   }) = _TrackingState;

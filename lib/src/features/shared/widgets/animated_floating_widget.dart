@@ -9,7 +9,7 @@ class AnimatedFloatingWidget extends StatefulWidget {
     super.key,
     required this.child,
     this.floatOffset = -5.0,
-    this.duration = const Duration(seconds: 2),
+    this.duration = const Duration(seconds: 3),
   });
 
   @override

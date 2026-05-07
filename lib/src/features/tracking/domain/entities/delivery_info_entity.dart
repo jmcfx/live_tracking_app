@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
+import 'package:live_tracking_app/src/core/enums/delivery_status.dart';
+import 'package:live_tracking_app/src/features/tracking/domain/entities/rider_location_entity.dart';
 
-class DeliveryInfoEnity extends Equatable {
-  const DeliveryInfoEnity({
+class DeliveryInfoEntity extends Equatable {
+  const DeliveryInfoEntity({
     required this.id,
     required this.courierName,
     required this.courierPhone,
@@ -17,9 +18,9 @@ class DeliveryInfoEnity extends Equatable {
   final String courierName;
   final String courierPhone;
   final String courierAvatar;
-  final RiderLocation riderLocation;
+  final RiderLocationEntity riderLocation;
   final LatLng destination;
-  final String status;
+  final DeliveryStatus status;
   final int etaMinutes;
 
   @override

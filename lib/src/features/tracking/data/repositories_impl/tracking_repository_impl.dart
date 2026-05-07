@@ -6,8 +6,8 @@ import 'package:live_tracking_app/src/core/errors/failure.dart';
 import 'package:live_tracking_app/src/core/utils/type_def.dart';
 import 'package:live_tracking_app/src/features/tracking/data/data_sources/tracking_remote_data_source.dart';
 import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
-
 import 'package:live_tracking_app/src/features/tracking/domain/entities/delivery_info_entity.dart';
+
 import 'package:live_tracking_app/src/features/tracking/domain/repositories/tracking_repository.dart';
 
 class TrackingRepositoryImpl implements TrackingRepository {
@@ -17,10 +17,10 @@ class TrackingRepositoryImpl implements TrackingRepository {
     : _remoteDataSource = remoteDataSource;
 
   @override
-  Stream<FailureOr<DeliveryInfoEnity>> watchRiderLocation(String deliveryId) {
+  Stream<FailureOr<DeliveryInfoEntity>> watchRiderLocation(String deliveryId) {
     return _remoteDataSource
         .getLiveLocationStream(deliveryId)
-        .map<FailureOr<DeliveryInfoEnity>>((response) {
+        .map<FailureOr<DeliveryInfoEntity>>((response) {
           final entity = response.deliveryInfo.toEntity();
           return Right(entity);
         })
@@ -30,7 +30,7 @@ class TrackingRepositoryImpl implements TrackingRepository {
   }
 
   @override
-  Future<FailureOr<DeliveryInfoEnity>> getDeliveryInfo(
+  Future<FailureOr<DeliveryInfoEntity>> getDeliveryInfo(
     String deliveryId,
   ) async {
     try {

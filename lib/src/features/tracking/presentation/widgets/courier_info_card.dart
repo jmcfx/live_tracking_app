@@ -134,7 +134,7 @@ class CourierInfoCard extends ConsumerWidget {
                         ],
                       ),
 
-                      CustomLabel(text: deliveryInfo.status),
+                      CustomLabel(text: deliveryInfo.status.label),
                     ],
                   ),
                   SizedBox(height: 20.h),
