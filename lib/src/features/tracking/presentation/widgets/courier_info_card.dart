@@ -8,12 +8,21 @@ import 'package:live_tracking_app/src/features/shared/widgets/custom_call_chip.d
 import 'package:live_tracking_app/src/features/shared/widgets/custom_label.dart';
 import 'package:live_tracking_app/src/features/tracking/presentation/widgets/courier_delivery_time_line.dart';
 
-class CourierInfoCard extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:live_tracking_app/src/features/tracking/presentation/notifiers/tracking_notifier.dart';
+
+class CourierInfoCard extends ConsumerWidget {
   const CourierInfoCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final deliveryInfo = ref.watch(
+      trackingProvider.select((s) => s.deliveryInfo),
+    );
+
+    if (deliveryInfo == null) return const SizedBox.shrink();
+
     return AnimatedFloatingWidget(
       child: Container(
         decoration: BoxDecoration(
@@ -21,9 +30,10 @@ class CourierInfoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(30.r),
           boxShadow: [
             BoxShadow(
-              color: theme.textTheme.bodyMedium!.color!.withValues(alpha: 0.2),
-              blurRadius: 15,
-              spreadRadius: 8,
+              color: theme.textTheme.bodyMedium!.color!.withValues(alpha: 0.1),
+              blurRadius: 8,
+              spreadRadius: 4,
+
               offset: const Offset(0, 0),
             ),
           ],
@@ -40,7 +50,7 @@ class CourierInfoCard extends StatelessWidget {
                 children: [
                   SvgPicture.asset(AppIcons.clock, height: 18.r, width: 18.r),
                   Text(
-                    "The package is estimated to arrive within the next\n25 minutes.",
+                    "The package is estimated to arrive within the next\n${deliveryInfo.etaMinutes} minutes.",
                     style: theme.textTheme.titleSmall,
                     textAlign: TextAlign.start,
                   ),
@@ -94,7 +104,7 @@ class CourierInfoCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Presley Williams",
+                                deliveryInfo.courierName,
                                 style: theme.textTheme.bodyMedium,
                               ),
                               Text("Courier", style: theme.textTheme.bodySmall),
@@ -116,7 +126,7 @@ class CourierInfoCard extends StatelessWidget {
                         children: [
                           Text("Order ID", style: theme.textTheme.bodySmall),
                           Text(
-                            "ORD-682834513",
+                            deliveryInfo.id,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               fontSize: 14.sp,
                             ),
@@ -124,7 +134,7 @@ class CourierInfoCard extends StatelessWidget {
                         ],
                       ),
 
-                      CustomLabel(text: "On Delivery"),
+                      CustomLabel(text: deliveryInfo.status),
                     ],
                   ),
                   SizedBox(height: 20.h),

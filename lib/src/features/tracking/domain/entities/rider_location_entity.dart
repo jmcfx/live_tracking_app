@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class RiderLocation extends Equatable {
-  const RiderLocation({
+class RiderLocationEntity extends Equatable {
+  const RiderLocationEntity({
     required this.lat,
     required this.lng,
     required this.heading,

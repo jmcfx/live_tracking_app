@@ -4,12 +4,17 @@ import 'package:flutter_svg/svg.dart';
 import 'package:live_tracking_app/src/core/constants/app_icons.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 
-class CourierDeliveryTimeline extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:live_tracking_app/src/features/tracking/presentation/notifiers/tracking_notifier.dart';
+
+class CourierDeliveryTimeline extends ConsumerWidget {
   const CourierDeliveryTimeline({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final deliveryInfo = ref.watch(trackingProvider.select((s) => s.deliveryInfo));
+
     return Timeline.tileBuilder(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
@@ -69,7 +74,7 @@ class CourierDeliveryTimeline extends StatelessWidget {
                     mainAxisAlignment: .center,
                     crossAxisAlignment: .start,
                     children: [
-                      Text("On Delivery", style: theme.textTheme.bodySmall),
+                      Text(deliveryInfo?.status ?? "On Delivery", style: theme.textTheme.bodySmall),
                       Text(
                         "Courier is delivering the package",
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -77,7 +82,7 @@ class CourierDeliveryTimeline extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "25 minutes destination",
+                        "${deliveryInfo?.etaMinutes ?? '--'} minutes destination",
                         style: theme.textTheme.bodySmall,
                       ),
                     ],

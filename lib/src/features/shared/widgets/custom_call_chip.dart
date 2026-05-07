@@ -12,7 +12,7 @@ class CustomCallChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AnimatedFloatingWidget(
-      duration: Duration(seconds: 6),
+      duration: const Duration(seconds: 6),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 6.h),
         decoration: BoxDecoration(

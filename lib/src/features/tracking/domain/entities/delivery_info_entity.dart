@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:live_tracking_app/src/features/tracking/domain/entities/rider_location.dart';
+import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
 
-class DeliveryInfo extends Equatable {
-  const DeliveryInfo({
+class DeliveryInfoEnity extends Equatable {
+  const DeliveryInfoEnity({
     required this.id,
     required this.courierName,
     required this.courierPhone,

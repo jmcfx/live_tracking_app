@@ -1,1 +1,44 @@
+import 'dart:async';
 
+import 'package:dartz/dartz.dart';
+
+import 'package:live_tracking_app/src/core/errors/failure.dart';
+import 'package:live_tracking_app/src/core/utils/type_def.dart';
+import 'package:live_tracking_app/src/features/tracking/data/data_sources/tracking_remote_data_source.dart';
+import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
+
+import 'package:live_tracking_app/src/features/tracking/domain/entities/delivery_info_entity.dart';
+import 'package:live_tracking_app/src/features/tracking/domain/repositories/tracking_repository.dart';
+
+class TrackingRepositoryImpl implements TrackingRepository {
+  final TrackingRemoteDataSource _remoteDataSource;
+
+  TrackingRepositoryImpl({required TrackingRemoteDataSource remoteDataSource})
+    : _remoteDataSource = remoteDataSource;
+
+  @override
+  Stream<FailureOr<DeliveryInfoEnity>> watchRiderLocation(String deliveryId) {
+    return _remoteDataSource
+        .getLiveLocationStream(deliveryId)
+        .map<FailureOr<DeliveryInfoEnity>>((response) {
+          final entity = response.deliveryInfo.toEntity();
+          return Right(entity);
+        })
+        .handleError((error, stackTrace) {
+          return Left(ServerFailure(message: error.toString()));
+        });
+  }
+
+  @override
+  Future<FailureOr<DeliveryInfoEnity>> getDeliveryInfo(
+    String deliveryId,
+  ) async {
+    try {
+      final response = await _remoteDataSource.getDeliveryInfo(deliveryId);
+      final entity = response.deliveryInfo.toEntity();
+      return Right(entity);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+}
