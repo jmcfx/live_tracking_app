@@ -1,6 +1,7 @@
 # Live Courier Tracking App (Flutter Assessment)
 A high-performance Flutter application demonstrating real-time location tracking for a courier delivery service.  
 Built using **Clean Architecture**, **Riverpod** for reactive state management, **WebSocket Streams** for live updates, and **Freezed** for robust, immutable state modeling.  
+
 The app features smooth, non-jumpy marker movement, a dynamic route path, and an interactive courier information card, all designed with premium aesthetics and maintainability in mind.
 ## Live Tracking Screen
 ## 📌 Snippet
@@ -16,9 +17,9 @@ https://github.com/user-attachments/assets/4847f9d1-5c6c-4bfb-9820-9806bc6ddc19
 The full demonstration video showcases the real-time simulation and smooth map transitions.  
 Copy the link below into your browser to watch:
 ```bash
-# Replace with your actual demo link
-https://drive.google.com/file/d/161QQmuloFwjQE5Ss-bcJlEzBK3MgJHJh/view?usp=sharing
+https://drive.google.com/file/d/1Q7j0dP8fFmb34LUBdUuBQg1veusN6Xx5/view?usp=sharing
 ```
+
 In this assessment, I implemented:
 - **Smooth Marker Animation**: Utilizing `TweenAnimationBuilder` for fluid movement along the route without "jumping".
 - **Dynamic Route Rendering**: A polyline that visually represents the path from the rider's current position to the destination.
