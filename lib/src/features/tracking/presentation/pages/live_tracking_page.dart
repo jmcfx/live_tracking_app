@@ -45,7 +45,11 @@ class _LiveTrackingPageState extends ConsumerState<LiveTrackingPage> {
             child: const CourierInfoCard(),
           ),
           if (state.viewState.isLoading || state.riderLocation == null)
-            const Center(child: CircularProgressIndicator.adaptive()),
+            Center(
+              child: CircularProgressIndicator.adaptive(
+                strokeWidth: 100.w,
+              ),
+            ),
         ],
       ),
     );

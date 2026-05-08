@@ -9,7 +9,7 @@ import 'package:live_tracking_app/src/features/tracking/data/models/tracking_inf
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 mixin RouteSimulationMixin {
-  static const int _steps = 7;
+  static const int _steps = 4;
   static const Duration _stepDelay = Duration(milliseconds: 1000);
 
   Future<void> runSimulation({

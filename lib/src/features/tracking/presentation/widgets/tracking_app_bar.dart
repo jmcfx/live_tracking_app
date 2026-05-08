@@ -29,7 +29,7 @@ class TrackingAppBar extends StatelessWidget {
                     color: theme.textTheme.bodyMedium!.color!.withValues(
                       alpha: 0.1,
                     ),
-                    blurRadius: 10,
+                    blurRadius: 5,
                     spreadRadius: 5,
 
                     offset: const Offset(0, 0),
