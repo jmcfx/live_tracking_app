@@ -100,7 +100,7 @@ class CourierDeliveryTimeline extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        "${deliveryInfo?.etaMinutes ?? ''} minutes destination",
+                        "${deliveryInfo?.etaMinutes ?? '10'} minutes destination",
                         style: theme.textTheme.bodySmall,
                       ),
                     ],
@@ -140,8 +140,22 @@ class CourierDeliveryTimeline extends ConsumerWidget {
                     ),
                   ],
                 ),
-
-                Column(children: []),
+                Padding(
+                  padding: EdgeInsets.only(right: 7.w),
+                  child: Column(
+                    mainAxisAlignment: .center,
+                    crossAxisAlignment: .start,
+                    children: [
+                      Text("----------", style: theme.textTheme.bodySmall),
+                      Text(
+                        "---------",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           );

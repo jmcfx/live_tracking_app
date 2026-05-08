@@ -19,7 +19,7 @@ class TrackingNotifier extends _$TrackingNotifier {
   }
 
   void startTracking({String deliveryId = "ORD-682834513"}) async {
-    state = state.copyWith(viewState: ViewState.loading);
+    state = state.copyWith(viewState: ViewState.loading, errorMessage: null);
 
     final GetDeliveryInfoUseCase getInfo = ref.read(
       getDeliveryInfoUseCaseProvider,
@@ -28,10 +28,12 @@ class TrackingNotifier extends _$TrackingNotifier {
     final result = await getInfo((id: deliveryId));
 
     result.fold(
-      (failure) => state = state.copyWith(
-        viewState: ViewState.error,
-        errorMessage: failure.message,
-      ),
+      (failure) {
+        state = state.copyWith(
+          viewState: ViewState.error,
+          errorMessage: failure.message,
+        );
+      },
       (info) {
         state = state.copyWith(
           viewState: ViewState.success,
@@ -45,18 +47,24 @@ class TrackingNotifier extends _$TrackingNotifier {
   void _listenToLocation(String deliveryId) {
     final watchLocation = ref.read(watchRiderLocationUseCaseProvider);
 
-    _streamSubscription = watchLocation((deliveryId: deliveryId)).listen((
-      result,
-    ) {
-      result.fold(
-        (failure) => state = state.copyWith(errorMessage: failure.message),
-        (info) {
-          state = state.copyWith(
-            deliveryInfo: info,
-            riderLocation: info.riderLocation,
-          );
-        },
-      );
-    });
+    _streamSubscription = watchLocation((deliveryId: deliveryId)).listen(
+      (result) {
+        result.fold(
+          (failure) => state = state.copyWith(errorMessage: failure.message),
+          (info) {
+            state = state.copyWith(
+              deliveryInfo: info,
+              riderLocation: info.riderLocation,
+            );
+          },
+        );
+      },
+      onError: (error) {
+        state = state.copyWith(
+          errorMessage: error.message.toString(),
+          viewState: ViewState.error,
+        );
+      },
+    );
   }
 }

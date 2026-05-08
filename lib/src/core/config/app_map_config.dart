@@ -9,14 +9,14 @@ class AppMapConfig {
   static const String userAgentPackageName = 'com.example.live_tracking_app';
   static const LatLng initialCenter = LatLng(38.8551, -77.0264);
 
-  /// predefined route coordinates for the rider (Staircase in DC/Alexandria)
+  /// predefined route coordinates for the rider
   static const List<LatLng> routePoints = [
-    LatLng(39.4143, -77.4105), // Destination (Frederick)
-    LatLng(39.2900, -77.2000), // Turn 1 (Diagonal SE)
-    LatLng(39.1500, -77.2000), // Turn 2 (Vertical South)
-    LatLng(39.1500, -76.9000), // Turn 3 (Horizontal East)
-    LatLng(38.9300, -76.9000), // Turn 4 (Vertical South)
-    LatLng(38.9323, -76.5491), // Start (Edgewater)
+    LatLng(39.4143, -77.4105),
+    LatLng(39.2900, -77.2000),
+    LatLng(39.1500, -77.2000),
+    LatLng(39.1500, -76.9000),
+    LatLng(38.9300, -76.9000),
+    LatLng(38.9323, -76.5491),
   ];
 
   /// WebSocket URl for live location updates.

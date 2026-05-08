@@ -22,6 +22,10 @@ class CacheFailure extends Failure {
   const CacheFailure({super.message = 'Cache Error Occurred'});
 }
 
+class NetworkFailure extends Failure {
+  const NetworkFailure({super.message = 'Network Error Occurred'});
+}
+
 class UnknownFailure extends Failure {
   const UnknownFailure({super.message = 'An Unknown Error Occurred'});
 }

@@ -30,25 +30,22 @@ class _LiveTrackingPageState extends ConsumerState<LiveTrackingPage> {
     return Scaffold(
       body: Stack(
         children: [
-          if (state.deliveryInfo != null && state.viewState.isSuccess)
-            const CustomMaps(),
+          if (state.riderLocation != null) const CustomMaps(),
           Positioned(
             top: 0,
             left: 29.w,
             right: 0,
             child: const TrackingAppBar(),
           ),
+
           Positioned(
             bottom: 19.h,
             left: 13.w,
             right: 13.w,
             child: const CourierInfoCard(),
           ),
-          if (state.viewState.isLoading)
+          if (state.viewState.isLoading || state.riderLocation == null)
             const Center(child: CircularProgressIndicator.adaptive()),
-
-          if (state.errorMessage != null && state.viewState.isError)
-            Center(child: Text(state.errorMessage!)),
         ],
       ),
     );

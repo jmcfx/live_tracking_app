@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:latlong2/latlong.dart';
 import 'package:live_tracking_app/src/core/config/app_map_config.dart';
@@ -58,7 +59,9 @@ mixin RouteSimulationMixin {
               timestamp: DateTime.now(),
             ),
             destination: AppMapConfig.routePoints.first,
-            status: isDelivered ? DeliveryStatus.delivered : DeliveryStatus.onTheWay,
+            status: isDelivered
+                ? DeliveryStatus.delivered
+                : DeliveryStatus.onDelivered,
             etaMinutes: isDelivered ? 0 : etaMinutes,
           ),
         );
@@ -66,6 +69,8 @@ mixin RouteSimulationMixin {
         try {
           channel.sink.add(jsonEncode(response));
         } on WebSocketChannelException {
+          throw ServerException();
+        } on SocketException {
           throw NetworkException();
         } catch (e) {
           throw UnknownException();

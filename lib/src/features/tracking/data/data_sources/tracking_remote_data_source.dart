@@ -37,7 +37,9 @@ class TrackingRemoteDataSourceImpl
 
   @override
   Future<TrackingInfoResponse> getDeliveryInfo(String deliveryId) async {
-    await Future.delayed(const Duration(milliseconds: 1));
+    /// IN Real life scenario ,this data will be fetched from the backend.
+    /// but for demonstration purpose ,i am assuming there is some data delay to show loading state.
+    await Future.delayed(const Duration(milliseconds: 10));
     return TrackingInfoResponse(
       riderLocation: RiderLocation(
         lat: 39.3853,
@@ -57,7 +59,7 @@ class TrackingRemoteDataSourceImpl
           timestamp: DateTime.now(),
         ),
         destination: AppMapConfig.routePoints.first,
-        status: DeliveryStatus.onTheWay,
+        status: DeliveryStatus.onDelivered,
         etaMinutes: 10,
       ),
     );

@@ -90,10 +90,7 @@ class _CustomMapsState extends ConsumerState<CustomMaps>
     _previousRiderPoint = currentRiderPoint;
 
     return TweenAnimationBuilder<LatLng>(
-      tween: _LatLngTween(
-        begin: beginPoint,
-        end: currentRiderPoint,
-      ),
+      tween: _LatLngTween(begin: beginPoint, end: currentRiderPoint),
       duration: const Duration(milliseconds: 1000),
       builder: (context, animatedPoint, _) {
         return TweenAnimationBuilder<double>(
@@ -110,6 +107,7 @@ class _CustomMapsState extends ConsumerState<CustomMaps>
                 TileLayer(
                   urlTemplate: AppMapConfig.mapTileUrl,
                   userAgentPackageName: AppMapConfig.userAgentPackageName,
+                  tileDisplay: TileDisplay.fadeIn(),
                 ),
                 DestinationMarkerLayer(destinationPoint: destinationPoint),
                 RoutePolylineLayer(currentRiderPoint: animatedPoint),

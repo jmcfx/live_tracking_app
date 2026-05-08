@@ -18,7 +18,7 @@ class TrackingAppBar extends StatelessWidget {
             child: Container(
               clipBehavior: Clip.hardEdge,
               padding: EdgeInsets.symmetric(
-                horizontal: 15.39.w,
+                horizontal: 15.40.w,
                 vertical: 11.25.h,
               ).r,
               alignment: AlignmentGeometry.center,
@@ -29,8 +29,8 @@ class TrackingAppBar extends StatelessWidget {
                     color: theme.textTheme.bodyMedium!.color!.withValues(
                       alpha: 0.1,
                     ),
-                    blurRadius: 8,
-                    spreadRadius: 4,
+                    blurRadius: 10,
+                    spreadRadius: 5,
 
                     offset: const Offset(0, 0),
                   ),

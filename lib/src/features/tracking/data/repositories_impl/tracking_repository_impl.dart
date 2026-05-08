@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 
-import 'package:live_tracking_app/src/core/errors/failure.dart';
+import 'package:live_tracking_app/src/core/utils/map_exceptions_to_failure.dart';
 import 'package:live_tracking_app/src/core/utils/type_def.dart';
 import 'package:live_tracking_app/src/features/tracking/data/data_sources/tracking_remote_data_source.dart';
 import 'package:live_tracking_app/src/features/tracking/data/models/tracking_info_response.dart';
@@ -25,7 +25,7 @@ class TrackingRepositoryImpl implements TrackingRepository {
           return Right(entity);
         })
         .handleError((error, stackTrace) {
-          return Left(ServerFailure(message: error.toString()));
+          return Left(mapExceptionToFailure(error));
         });
   }
 
@@ -38,7 +38,7 @@ class TrackingRepositoryImpl implements TrackingRepository {
       final entity = response.deliveryInfo.toEntity();
       return Right(entity);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(mapExceptionToFailure(e));
     }
   }
 }
