@@ -27,6 +27,8 @@ class _LiveTrackingPageState extends ConsumerState<LiveTrackingPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(trackingProvider);
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -47,7 +49,8 @@ class _LiveTrackingPageState extends ConsumerState<LiveTrackingPage> {
           if (state.viewState.isLoading || state.riderLocation == null)
             Center(
               child: CircularProgressIndicator.adaptive(
-                strokeWidth: 100.w,
+                backgroundColor: theme.colorScheme.onPrimaryFixedVariant,
+                padding: EdgeInsets.symmetric(horizontal: 50.r, vertical: 10.r),
               ),
             ),
         ],

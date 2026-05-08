@@ -2,13 +2,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum DeliveryStatus {
   @JsonValue('On Delivered')
-  onDelivered('On Delivered'),
+  onDelivery('On Delivery'),
   @JsonValue('Delivered')
   delivered(' Delivered');
 
   final String label;
   const DeliveryStatus(this.label);
 
-  bool get isOnTheWay => this == DeliveryStatus.onDelivered;
+  bool get isOnTheWay => this == DeliveryStatus.onDelivery;
   bool get isDelivered => this == DeliveryStatus.delivered;
 }

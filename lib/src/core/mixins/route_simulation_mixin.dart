@@ -61,7 +61,7 @@ mixin RouteSimulationMixin {
             destination: AppMapConfig.routePoints.first,
             status: isDelivered
                 ? DeliveryStatus.delivered
-                : DeliveryStatus.onDelivered,
+                : DeliveryStatus.onDelivery,
             etaMinutes: isDelivered ? 0 : etaMinutes,
           ),
         );

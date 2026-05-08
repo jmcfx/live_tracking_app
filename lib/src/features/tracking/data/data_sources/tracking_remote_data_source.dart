@@ -59,7 +59,7 @@ class TrackingRemoteDataSourceImpl
           timestamp: DateTime.now(),
         ),
         destination: AppMapConfig.routePoints.first,
-        status: DeliveryStatus.onDelivered,
+        status: DeliveryStatus.onDelivery,
         etaMinutes: 10,
       ),
     );

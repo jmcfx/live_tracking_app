@@ -65,6 +65,6 @@ Map<String, dynamic> _$DeliveryInfoToJson(_DeliveryInfo instance) =>
     };
 
 const _$DeliveryStatusEnumMap = {
-  DeliveryStatus.onDelivered: 'On Delivered',
+  DeliveryStatus.onDelivery: 'On Delivered',
   DeliveryStatus.delivered: 'Delivered',
 };
